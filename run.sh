@@ -3,7 +3,7 @@ set -e
 
 if ! [ -x "$(command -v docker-compose)" ]; then
     echo "Please install docker: https://docs.docker.com/get-docker/"
-    # command
+    exit 1
 fi
 
 docker-compose pull
