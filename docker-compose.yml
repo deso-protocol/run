@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  core:
+    image: ghcr.io/bitclout/core-obf:latest
+    volumes:
+    - db:/db
+    ports:
+    - 17001:17001
+    - 17000:17000
+  frontend:
+    image: ghcr.io/bitclout/frontend:latest
+    ports:
+    - 80:80
+volumes:
+  db:
