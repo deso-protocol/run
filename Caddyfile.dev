@@ -1,0 +1,12 @@
+{
+    admin off
+    auto_https off
+}
+
+:8080 {
+    file_server
+    try_files {path} index.html
+
+    header Access-Control-Allow-Methods "GET, PUT, POST, DELETE, OPTIONS"
+    header Access-Control-Allow-Origin "*"
+}
