@@ -22,4 +22,3 @@ If your node fails to sync or you want to try syncing from scratch you can run:
 ```bash
 $ docker-compose down --volumes
 ```
-
