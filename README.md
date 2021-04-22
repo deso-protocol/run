@@ -33,7 +33,7 @@ data in real time! Below are some tips on how take full advantage of your node.
   onto your global feed.
 * Read through the flags available in the [dev.env](https://github.com/bitclout/run/blob/main/dev.env) 
   file. You can adjust these flags however you want, but note that we strongly 
-  recommend keeping your node in read-only node for now. Turning read-only mode
+  recommend keeping your node in read-only mode for now. Turning read-only mode
   off could cause users who visit your node to make transactions that are not
   ultimately confirmed.
 * Set ADMIN\_PUBLIC\_KEYS to your public key so that the Admin tab is only
