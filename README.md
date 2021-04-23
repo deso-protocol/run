@@ -29,6 +29,11 @@ Once your node is synced, you have access to the full firehose of BitClout
 data in real time! Below are some tips on how take full advantage of your node.
 * Go to your Admin tab and watch the unfiltered feed update as your node
   syncs. It's like a time machine!
+  - Note: If your node is having trouble syncing for some reason, try updating
+    the CONNECT_IPS flag in dev.env to bitclout-seed-2.io and set
+    IGNORE\_INBOUND\_PEER\_INV\_MESSAGES to true while you sync. This will pick
+    a fairly reliable node as a sync peer and disregard messages from other
+    peers.
 * Try to whitelist some posts in the Admin tab and see that they've made their way
   onto your global feed.
 * Read through the flags available in the [dev.env](https://github.com/bitclout/run/blob/main/dev.env) 
@@ -41,6 +46,9 @@ data in real time! Below are some tips on how take full advantage of your node.
 * Whitelist some posts and verify that they show up on the global feed.
 * Deploy your node on any cloud provider with a static IP to make it accessible
   to anyone on the internet.
+  - Note: If you do this, you *must* add your domain to the Caddyfile.dev's 
+    Content-Security-Policy or your site won't work. You will need to add two 
+    entries: One for domain.com:\* and one for api.domain.com:\*
 * Set a PASSWORDS\_FILE if you want to restrict read access to your node.
 * Add an SSL\_CERT\_DIR and SSL\_DOMAIN using a letsencrypt cert in order to
   protect your node with HTTPS.
