@@ -5,13 +5,15 @@ Running your own BitClout node is as easy as 1-2-3:
 1. [Install Docker and Docker Compose](https://docs.docker.com/get-docker/) if you don't have it already
     * On Mac and Windows, Docker comes with Docker Compose
     * On Linux you need to install Docker Engine and Docker Compose separately
-2. Execute `./run.sh`
+2. Execute `./run.sh` in your command prompt
 2. Visit http://bitclout.me. This domain is aliased to your local machine so it will
    allow you to interact with your local node.
 
 ## Check sync progress
 
 You can check on the sync progress of your local node in the admin panel.
+
+The following is the process:
 
 1. Create a new user OR sign in with your existing seed phrase
 2. Head to the Admin panel to see your sync status. The tooltips should explain what
@@ -24,7 +26,9 @@ If your node fails to sync or you want to try syncing from scratch you can run:
 ```bash
 $ docker-compose down --volumes
 ```
+
 ## What's next?
+
 Once your node is synced, you have access to the full firehose of BitClout
 data in real time! Below are some tips on how take full advantage of your node.
 * Go to your Admin tab and watch the unfiltered feed update as your node
@@ -59,3 +63,5 @@ data in real time! Below are some tips on how take full advantage of your node.
 * Set the TWILIO\* flags to allow new users to get some starter BitClout.
 * Set a SUPPORT\_EMAIL so your users can contact you if they run into trouble.
 * Play with the logging verbosity by increasing GLOG\_V.
+
+Made with ❤️ by BitClout.
