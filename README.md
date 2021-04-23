@@ -46,6 +46,8 @@ data in real time! Below are some tips on how take full advantage of your node.
 * Whitelist some posts and verify that they show up on the global feed.
 * Deploy your node on any cloud provider with a static IP to make it accessible
   to anyone on the internet.
+  - Note: If you do this, you must point *two* domains at your node.
+    domain.com *and* api.domain.com.
   - Note: If you do this, you *must* add your domain to the Caddyfile.dev's 
     Content-Security-Policy or your site won't work. You will need to add two 
     entries: One for domain.com:\* and one for api.domain.com:\*

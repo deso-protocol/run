@@ -11,14 +11,19 @@
     header Access-Control-Allow-Origin "*"
     header Content-Security-Policy "
       default-src 'self';
-      connect-src 'self' api.bitclout.com api.bitpop.dev bitpop.cash:* bitclout.fun:* 
+      connect-src 'self'
+        api.bitclout.com bitclout.com:*
+        api.bitpop.dev
         bitclout.me:* api.bitclout.me:*
-        localhost:* bitclout.com:* 192.168.0.176:*
-        megamoons.com:* explorer.bitclout.com:*
-        https://blockchain.info/ticker https://ka-f.fontawesome.com/
-        imgur-apiv3.p.rapidapi.com api.imgur.com bitcoinfees.earn.com
-        api.blockchain.info/mempool/fees api.blockcypher.com 
-        amp.bitclout.com api.bitclout.green api.bitclout.blue 
+        localhost:*
+        explorer.bitclout.com:*
+        https://blockchain.info/ticker
+        api.blockchain.info/mempool/fees
+        https://ka-f.fontawesome.com/
+        bitcoinfees.earn.com
+        api.blockcypher.com 
+        amp.bitclout.com
+        api.bitclout.green api.bitclout.blue 
         api.bitclout.navy;
       script-src 'self' https://cdn.jsdelivr.net/npm/sweetalert2@10 
         https://kit.fontawesome.com/070ca4195b.js https://ka-f.fontawesome.com/;
