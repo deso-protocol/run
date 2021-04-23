@@ -48,7 +48,7 @@ data in real time! Below are some tips on how take full advantage of your node.
   to anyone on the internet.
   - If you do this, you must point *two* domains at your node.
     domain.com *and* api.domain.com.
-  - If you do this, you must replace bitclout.me with bitpop.cash in nginx.dev so
+  - If you do this, you must replace bitclout.me with your domain in nginx.dev so
     that your traffic is routed to core and frontend properly.
   - If you do this, you *must* add your domain to the Caddyfile.dev's 
     Content-Security-Policy or your site won't work. You will need to add two 
