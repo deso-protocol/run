@@ -6,7 +6,7 @@ Running your own BitClout node is as easy as 1-2-3:
     * On Mac and Windows, Docker comes with Docker Compose
     * On Linux you need to install Docker Engine and Docker Compose separately
 2. Execute `./run.sh`
-    * Optionally, any arguments passed to `./run.sh` will be piped to the `docker-compose up` command. E.g. `./run.sh -d`
+    * Optionally, use `docker-compose up` arguments like `./run.sh -d` to run a daemon
 3. Visit http://bitclout.me. This domain is aliased to your local machine so it will
    allow you to interact with your local node.
 
