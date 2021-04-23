@@ -1,6 +1,8 @@
 events {
 }
 http {
+  client_max_body_size 20m;
+
   server {
     server_name bitclout.me;
 
