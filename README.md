@@ -60,3 +60,8 @@ data in real time! Below are some tips on how take full advantage of your node.
 * Set the TWILIO\* flags to allow new users to get some starter BitClout.
 * Set a SUPPORT\_EMAIL so your users can contact you if they run into trouble.
 * Play with the logging verbosity by increasing GLOG\_V.
+
+## Need help?
+The dev community is active on Discord and generally avaialble to answer any
+questions you might have, or any issues you run into. If you're having trouble, just
+message [the nodes-discussion channel](https://discord.com/channels/820740896181452841/835273317773869086/835273503284265002).
