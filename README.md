@@ -55,8 +55,7 @@ data in real time! Below are some tips on how take full advantage of your node.
     Content-Security-Policy or your site won't work. You will need to add two
     entries: One for domain.com:\* and one for api.domain.com:\*
 * Set a PASSWORDS\_FILE if you want to restrict read access to your node.
-* Add an SSL\_CERT\_DIR and SSL\_DOMAIN using a letsencrypt cert in order to
-  protect your node with HTTPS.
+* Add the necessary nginx configuration for your SSL certificates
 * Set the TWILIO\* flags to allow new users to get some starter BitClout.
 * Set a SUPPORT\_EMAIL so your users can contact you if they run into trouble.
 * Play with the logging verbosity by increasing GLOG\_V.
