@@ -31,7 +31,7 @@ data in real time! Below are some tips on how take full advantage of your node.
 * Go to your Admin tab and watch the unfiltered feed update as your node
   syncs. It's like a time machine!
   - Note: If your node is having trouble syncing for some reason, try updating
-    the CONNECT_IPS flag in dev.env to bitclout-seed-2.io and set
+    the CONNECT_IPS flag in dev.env to bitclout-seed-2.io or bitclout-seed-4.io and set
     IGNORE\_INBOUND\_PEER\_INV\_MESSAGES to true while you sync. This will pick
     a fairly reliable node as a sync peer and disregard messages from other
     peers.
