@@ -3,34 +3,54 @@
     auto_https off
 }
 
-:8080 {
-    file_server
-    try_files {path} index.html
+# Bind to port 8080
+:8080
 
-    header Access-Control-Allow-Methods "GET, PUT, POST, DELETE, OPTIONS"
-    header Access-Control-Allow-Origin "*"
-    header Content-Security-Policy "
-      default-src 'self';
-      connect-src 'self'
-        api.bitclout.com bitclout.com:*
-        api.bitpop.dev
-        bitclout.me:* api.bitclout.me:*
-        localhost:*
-        explorer.bitclout.com:*
-        https://blockchain.info/ticker
-        api.blockchain.info/mempool/fees
-        https://ka-f.fontawesome.com/
-        bitcoinfees.earn.com
-        api.blockcypher.com 
-        amp.bitclout.com
-        api.bitclout.green api.bitclout.blue 
-        api.bitclout.navy;
-      script-src 'self' https://cdn.jsdelivr.net/npm/sweetalert2@10 
-        https://kit.fontawesome.com/070ca4195b.js https://ka-f.fontawesome.com/;
-      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      img-src 'self' data: i.imgur.com images.bitclout.com;
-      font-src 'self' https://fonts.googleapis.com 
-        https://fonts.gstatic.com https://ka-f.fontawesome.com;
-      frame-src 'self' localhost:* 
-        identity.bitclout.com identity.bitclout.blue identity.bitclout.green;"
+# Serve static files
+file_server
+
+# Fallback to index.html for everything but assets
+@html {
+  not path *.js *.css *.png *.svg *.pdf *.eot *.ttf *.woff *.woff2 *.webmanifest
+
+  file index.html
 }
+
+rewrite @html {http.matchers.file.relative}
+
+header @html Access-Control-Allow-Methods "GET, PUT, POST, DELETE, OPTIONS"
+header @html Access-Control-Allow-Origin "*"
+
+# Don't cache index.html and set CSP
+header @html Cache-Control no-store
+header @html Content-Security-Policy "
+  default-src 'self';
+  connect-src 'self'
+    bitclout.com:*
+    api.bitclout.com
+    api.bitpop.dev
+    localhost:*
+    explorer.bitclout.com:*
+    https://blockchain.info/ticker
+    https://api.blockchain.info/mempool/fees
+    https://ka-f.fontawesome.com/
+    bitcoinfees.earn.com
+    api.blockcypher.com
+    amp.bitclout.com api.bitclout.green api.bitclout.blue
+    api.bitclout.navy;
+  script-src 'self'
+    https://kit.fontawesome.com/070ca4195b.js
+    https://ka-f.fontawesome.com/;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' data: i.imgur.com images.bitclout.com;
+  font-src 'self'
+    https://fonts.googleapis.com
+    https://fonts.gstatic.com
+    https://ka-f.fontawesome.com;
+  frame-src 'self'
+    localhost:*
+    identity.bitclout.com
+    identity.bitclout.blue
+    identity.bitclout.green
+    https://www.youtube.com
+    https://player.vimeo.com;"
