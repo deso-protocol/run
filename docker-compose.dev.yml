@@ -2,7 +2,7 @@ version: "3.7"
 services:
   core:
     container_name: core
-    image: ghcr.io/bitclout/core-obf:latest
+    image: ghcr.io/bitclout/core-obf:stable
     volumes:
     - db:/db
     ports:
@@ -15,7 +15,7 @@ services:
     - "17000"
   frontend:
     container_name: frontend 
-    image: ghcr.io/bitclout/frontend:latest
+    image: ghcr.io/bitclout/frontend:stable
     ports:
     - 8080:8080
     volumes:
