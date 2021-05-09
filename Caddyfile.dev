@@ -32,5 +32,7 @@
       font-src 'self' https://fonts.googleapis.com 
         https://fonts.gstatic.com https://ka-f.fontawesome.com;
       frame-src 'self' localhost:* 
-        identity.bitclout.com identity.bitclout.blue identity.bitclout.green;"
+        identity.bitclout.com identity.bitclout.blue identity.bitclout.green
+        https://www.youtube.com
+        https://player.vimeo.com;"
 }
