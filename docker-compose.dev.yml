@@ -29,7 +29,10 @@ services:
     image: nginx:latest
     volumes:
       - ./nginx.dev:/etc/nginx/nginx.conf
-    ports:
+    depends_on: 
+      - core
+      - frontend
+      ports:
       - 80:80
       - 443:443
 volumes:
