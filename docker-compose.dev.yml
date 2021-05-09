@@ -32,7 +32,7 @@ services:
     depends_on: 
       - core
       - frontend
-      ports:
+    ports:
       - 80:80
       - 443:443
 volumes:
