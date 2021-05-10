@@ -23,7 +23,7 @@ You can check on the sync progress of your local node in the admin panel.
 If your node fails to sync or you want to try syncing from scratch you can run:
 
 ```bash
-$ docker-compose -f docker-compose.dev.yml down --volumes
+docker-compose -f docker-compose.dev.yml down --volumes
 ```
 ## What's next?
 Once your node is synced, you have access to the full firehose of BitClout
