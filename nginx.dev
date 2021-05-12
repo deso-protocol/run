@@ -10,6 +10,10 @@ http {
       proxy_pass http://frontend:8080;
     }
 
+    location /api/ {
+      proxy_pass http://core:17001;
+    }
+
     listen 80;
     # listen 443 ssl;
     # ssl_certificate /etc/letsencrypt/live/server2.your.domain/fullchain.pem;
