@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  core:
+  backend:
     container_name: backend
     image: ghcr.io/bitclout/backend:stable
     volumes:
@@ -30,7 +30,7 @@ services:
     volumes:
       - ./nginx.dev:/etc/nginx/nginx.conf
     depends_on: 
-      - core
+      - backend
       - frontend
     ports:
       - 80:80
