@@ -11,7 +11,7 @@ http {
     }
 
     location /api/ {
-      proxy_pass http://core:17001;
+      proxy_pass http://backend:17001;
     }
 
     listen 80;
