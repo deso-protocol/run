@@ -13,6 +13,7 @@
       default-src 'self';
       connect-src 'self'
         api.bitclout.com bitclout.com:*
+        bithunt.bitclout.com pulse.bitclout.com
         api.bitpop.dev
         bitclout.me:* api.bitclout.me:*
         localhost:*
