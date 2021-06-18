@@ -24,16 +24,19 @@
         bitcoinfees.earn.com
         api.blockcypher.com 
         amp.bitclout.com
-        api.bitclout.green api.bitclout.blue 
+        api.bitclout.green api.bitclout.blue
         api.bitclout.navy;
-      script-src 'self' https://cdn.jsdelivr.net/npm/sweetalert2@10 
+      script-src 'self' https://cdn.jsdelivr.net/npm/sweetalert2@10
         https://kit.fontawesome.com/070ca4195b.js https://ka-f.fontawesome.com/;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
       img-src 'self' data: i.imgur.com images.bitclout.com;
-      font-src 'self' https://fonts.googleapis.com 
+      font-src 'self' https://fonts.googleapis.com
         https://fonts.gstatic.com https://ka-f.fontawesome.com;
-      frame-src 'self' localhost:* 
+      frame-src 'self' localhost:*
         identity.bitclout.com identity.bitclout.blue identity.bitclout.green
         https://www.youtube.com
-        https://player.vimeo.com;"
+        https://player.vimeo.com
+        https://www.tiktok.com
+        https://giphy.com
+        https://open.spotify.com;"
 }
