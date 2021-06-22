@@ -44,6 +44,8 @@ data in real time! Below are some tips on how take full advantage of your node.
   ultimately confirmed.
 * Set ADMIN\_PUBLIC\_KEYS to your public key so that the Admin tab is only
   visible to your username.
+* Set SUPER\_ADMIN\_PUBLIC\_KEYS to your public key so that the super admin tab is only
+  visible to your username.
 * Whitelist some posts and verify that they show up on the global feed.
 * Deploy your node on any cloud provider with a static IP to make it accessible
   to anyone on the internet.
