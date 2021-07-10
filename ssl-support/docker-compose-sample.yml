@@ -1,0 +1,81 @@
+ 
+
+backend: 
+  container_name: backend 
+  image: docker.io/bitclout/backend:latest 
+  #to build local - will use ./backend/Dockerfile 
+  #build: ./backend 
+  command: run 
+  volumes: 
+    - db:/db 
+  ports: 
+    - 17001:17001 
+    - 17000:17000 
+  restart: always   
+  env_file: 
+    - bitclout_node.env 
+  expose: 
+    - "17001" 
+    - "17000" 
+  networks: 
+    - cloutini_network
+ 
+frontend: 
+  container_name: frontend   
+  #image: docker.io/bitclout/frontend:stable 
+  #to build local
+  build: ./frontend 
+  ports: 
+    - 8080:8080 
+  restart: always   
+  volumes: 
+    - ./:/app 
+  env_file: 
+    - bitclout_node.env 
+  expose: 
+    - "8080" 
+  networks: 
+    - cloutini_network
+    
+nginx:
+  container_name: nginx
+  image: nginx:1.15-alpine
+  restart: always  
+  volumes:
+    - ./nginx-certbot/data/nginx:/etc/nginx/conf.d
+    - ./nginx-certbot/data/certbot/conf:/etc/letsencrypt
+    - ./nginx-certbot/data/certbot/www:/var/www/certbot
+  ports:
+    - "80:80"
+    - "443:443"
+  command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  networks:
+    - cloutini_network
+  depends_on:   
+    - backend
+    - frontend
+
+certbot:
+  container_name: certbot
+  image: certbot/certbot
+  restart: always  
+  volumes:
+    - ./nginx-certbot/data/certbot/conf:/etc/letsencrypt
+    - ./nginx-certbot/data/certbot/www:/var/www/certbot
+  entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  networks:
+    - cloutini_network
+
+# when don't specify external, docker creates a network 
+# ** we need(ed) an external network because
+#   the letsencrypt princess (was) in another castle (docker container)
+# be sure to create this first using 
+#   $ docker network create cloutini_network
+networks:
+  cloutini_network:
+    driver: bridge
+
+# needed because using '- db:/db' under volumes above
+volumes:
+  db:
+
