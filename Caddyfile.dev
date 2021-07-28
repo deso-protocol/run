@@ -29,7 +29,7 @@
       script-src 'self' https://cdn.jsdelivr.net/npm/sweetalert2@10
         https://kit.fontawesome.com/070ca4195b.js https://ka-f.fontawesome.com/;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      img-src 'self' data: i.imgur.com images.bitclout.com;
+      img-src 'self' data: i.imgur.com images.bitclout.com quickchart.io arweave.net *.arweave.net;
       font-src 'self' https://fonts.googleapis.com
         https://fonts.gstatic.com https://ka-f.fontawesome.com;
       frame-src 'self' localhost:*
