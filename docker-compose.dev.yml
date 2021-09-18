@@ -2,7 +2,7 @@ version: "3.7"
 services:
   backend:
     container_name: backend
-    image: docker.io/bitclout/backend:stable
+    image: docker.io/bitclout/deso-backend:stable
     command: run
     volumes:
     - db:/db
@@ -16,7 +16,7 @@ services:
     - "17000"
   frontend:
     container_name: frontend 
-    image: docker.io/bitclout/frontend:stable
+    image: docker.io/bitclout/deso-frontend:stable
     ports:
     - 8080:8080
     volumes:

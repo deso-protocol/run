@@ -31,13 +31,13 @@ data in real time! Below are some tips on how take full advantage of your node.
 * Go to your Admin tab and watch the unfiltered feed update as your node
   syncs. It's like a time machine!
   - Note: If your node is having trouble syncing for some reason, try updating
-    the CONNECT_IPS flag in dev.env to bitclout-seed-2.io or bitclout-seed-4.io and set
+    the CONNECT_IPS flag in dev.env to deso-seed-2.io or deso-seed-4.io and set
     IGNORE\_INBOUND\_PEER\_INV\_MESSAGES to true while you sync. This will pick
     a fairly reliable node as a sync peer and disregard messages from other
     peers.
 * Try to whitelist some posts in the Admin tab and see that they've made their way
   onto your global feed.
-* Read through the flags available in the [dev.env](https://github.com/deso-project/run/blob/main/dev.env)
+* Read through the flags available in the [dev.env](https://github.com/bitclout/deso-run/blob/main/dev.env)
   file. You can adjust these flags however you want, but note that we strongly
   recommend keeping your node in read-only mode for now. Turning read-only mode
   off could cause users who visit your node to make transactions that are not
@@ -64,4 +64,4 @@ data in real time! Below are some tips on how take full advantage of your node.
 ## Need help?
 The dev community is active on Discord and generally available to answer any
 questions you might have, or any issues you run into. If you're having trouble, just
-message in `#nodes-discussion` on the [Bitclout Community Discord](https://discord.com/invite/bitclout).
+message in `#nodes-discussion` on the [DeSo Community Discord](https://discord.com/invite/bitclout).

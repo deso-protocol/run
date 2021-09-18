@@ -34,6 +34,7 @@
         https://fonts.gstatic.com https://ka-f.fontawesome.com;
       frame-src 'self' localhost:*
         identity.bitclout.com identity.bitclout.blue identity.bitclout.green
+        identity.deso.org identity.deso.blue identity.deso.green
         https://www.youtube.com
         https://player.vimeo.com
         https://www.tiktok.com
