@@ -4,7 +4,7 @@ http {
   client_max_body_size 20m;
 
   server {
-    server_name bitclout.me;
+    server_name deso.run;
 
     location / {
       proxy_pass http://frontend:8080;
