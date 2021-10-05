@@ -25,7 +25,11 @@
         api.blockcypher.com 
         amp.bitclout.com
         api.bitclout.green api.bitclout.blue
-        api.bitclout.navy;
+        api.bitclout.navy
+        api.testwyre.com
+        api.sendwyre.com
+        https://videodelivery.net
+        https://upload.videodelivery.net;
       script-src 'self' https://cdn.jsdelivr.net/npm/sweetalert2@10
         https://kit.fontawesome.com/070ca4195b.js https://ka-f.fontawesome.com/;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
@@ -40,5 +44,8 @@
         https://www.tiktok.com
         https://giphy.com
         https://open.spotify.com
-        https://w.soundcloud.com;"
+        https://w.soundcloud.com
+        pay.testwyre.com
+        pay.sendwyre.com
+        https://iframe.videodelivery.net;"
 }
