@@ -2,7 +2,7 @@ version: "3.7"
 services:
   backend:
     container_name: backend
-    image: docker.io/desoprotocol/backend:stable
+    image: docker.io/desoprotocol/backend:latest
     command: run
     volumes:
     - db:/db
@@ -16,7 +16,7 @@ services:
     - "17000"
   frontend:
     container_name: frontend 
-    image: docker.io/desoprotocol/frontend:stable
+    image: docker.io/desoprotocol/frontend:latest
     ports:
     - 8080:8080
     volumes:
