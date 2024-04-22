@@ -1,0 +1,55 @@
+services:
+  backend:
+    container_name: backend
+    # FIXME: We need to set this to a more reliable release
+    # For now, just grab the latest commit from feature/proof-of-stake
+    image: docker.io/desoprotocol/backend:853e15481d6fe7a4bba97cbe79b43f9cde18b271
+    command: run
+    volumes:
+    - devnet-db:/db
+    ports:
+    - 18001:18001
+    - 18000:18000
+    - 2345:2345
+    environment:
+    # Values we set here OVERRIDE the base.env variables.
+    # Set the seed to a known devnet validator as an example
+    - POS_VALIDATOR_SEED=category ignore around vibrant delay cargo apart truly rabbit blue master cash
+    # For devnet, we must use a different checkpoint provider
+    - CHECKPOINT_SYNCING_PROVIDERS=https://devnet-0.deso.run
+    - TESTNET=true
+    - REGTEST=true
+    - CONNECT_IPS=devnet-0-root.deso.run:18000
+    - PROTOCOL_PORT=18000
+    - API_PORT=18001
+    env_file:
+    - base.env
+    expose:
+    - "18001"
+    - "18000"
+    - "2345"
+  frontend:
+    container_name: frontend 
+    image: docker.io/desoprotocol/frontend:stable
+    ports:
+    - 8080:8080
+    volumes:
+    - ./:/app
+    env_file:
+    # TODO: We should break the frontend params from the backend params.
+    - base.env
+    expose:
+    - "8080"
+  nginx: 
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx.dev:/etc/nginx/nginx.conf
+    depends_on: 
+      - backend
+      - frontend
+    ports:
+      - 80:80
+      - 443:443
+volumes:
+  devnet-db:

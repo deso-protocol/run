@@ -1,0 +1,57 @@
+services:
+  backend:
+    container_name: backend
+    # FIXME: We need to set this to the feature/proof-of-stake release at some point
+    # probably
+    image: docker.io/desoprotocol/backend:latest
+    command: run
+    volumes:
+    - mainnet-db:/db
+    ports:
+    - 17001:17001
+    - 17000:17000
+    - 2345:2345
+    environment:
+    # Values we set here OVERRIDE the base.env variables.
+    #
+    # Set the seed here if you want to be a validator
+    # - POS_VALIDATOR_SEED=
+    #
+    # For mainnet, we must use a different checkpoint provider
+    - CHECKPOINT_SYNCING_PROVIDERS=https://node.deso.org
+    - TESTNET=false
+    - REGTEST=false
+    - CONNECT_IPS=deso-seed-2.io:17000
+    - PROTOCOL_PORT=17000
+    - API_PORT=17001
+    env_file:
+    - base.env
+    expose:
+    - "17001"
+    - "17000"
+    - "2345"
+  frontend:
+    container_name: frontend 
+    image: docker.io/desoprotocol/frontend:stable
+    ports:
+    - 8080:8080
+    volumes:
+    - ./:/app
+    env_file:
+    # TODO: We should break the frontend params from the backend params.
+    - base.env
+    expose:
+    - "8080"
+  nginx: 
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx.dev:/etc/nginx/nginx.conf
+    depends_on: 
+      - backend
+      - frontend
+    ports:
+      - 80:80
+      - 443:443
+volumes:
+  mainnet-db:
