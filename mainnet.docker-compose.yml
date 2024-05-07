@@ -19,9 +19,11 @@ services:
     #
     # For mainnet, we must use a different checkpoint provider
     - CHECKPOINT_SYNCING_PROVIDERS=https://node.deso.org
+    - SYNC_TYPE=hypersync-archival
+    - FORCE_CHECKSUM=false
     - TESTNET=false
     - REGTEST=false
-    - CONNECT_IPS=deso-seed-2.io:17000
+    - CONNECT_IPS=deso-seed-4.io:17000
     - PROTOCOL_PORT=17000
     - API_PORT=17001
     env_file:

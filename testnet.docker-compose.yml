@@ -1,7 +1,6 @@
 services:
   backend:
     container_name: backend
-    # FIME: We need to set this to feature/proof-of-stake probably
     image: docker.io/desoprotocol/backend:latest
     command: run
     volumes:
@@ -17,7 +16,12 @@ services:
     # - POS_VALIDATOR_SEED=
     #
     # For testnet, we must use a different checkpoint provider
-    - CHECKPOINT_SYNCING_PROVIDERS=https://devnet-0.deso.run
+    - GLOG_V=1
+    - TRUSTED_BLOCK_PRODUCER_PUBLIC_KEYS=" "
+    - TRUSTED_BLOCK_PRODUCER_START_HEIGHT=2000000000
+    - FORCE_CHECKSUM=false
+    - SYNC_TYPE=blocksync
+    - CHECKPOINT_SYNCING_PROVIDERS=https://test.deso.org
     - TESTNET=true
     # The REGTEST param is the main difference between running a testnet vs devnet node.
     - REGTEST=false
