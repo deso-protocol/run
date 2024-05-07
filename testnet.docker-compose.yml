@@ -17,7 +17,6 @@ services:
     #
     # For testnet, we must use a different checkpoint provider
     - GLOG_V=1
-    - TRUSTED_BLOCK_PRODUCER_PUBLIC_KEYS=" "
     - TRUSTED_BLOCK_PRODUCER_START_HEIGHT=2000000000
     - FORCE_CHECKSUM=false
     - SYNC_TYPE=blocksync
