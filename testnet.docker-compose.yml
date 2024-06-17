@@ -1,7 +1,7 @@
 services:
   backend:
     container_name: backend
-    image: docker.io/desoprotocol/backend:latest
+    image: docker.io/desoprotocol/backend:stable
     command: run
     volumes:
     - testnet-db:/db

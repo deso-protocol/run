@@ -1,9 +1,7 @@
 services:
   backend:
     container_name: backend
-    # FIXME: We need to set this to the feature/proof-of-stake release at some point
-    # probably
-    image: docker.io/desoprotocol/backend:latest
+    image: docker.io/desoprotocol/backend:stable
     command: run
     volumes:
     - mainnet-db:/db

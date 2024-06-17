@@ -1,9 +1,7 @@
 services:
   backend:
     container_name: backend
-    # FIXME: We need to set this to a more reliable release
-    # For now, just grab the latest commit from feature/proof-of-stake
-    image: docker.io/desoprotocol/backend:853e15481d6fe7a4bba97cbe79b43f9cde18b271
+    image: docker.io/desoprotocol/backend:stable
     command: run
     volumes:
     - devnet-db:/db
@@ -16,7 +14,7 @@ services:
     # Set the seed to a known devnet validator as an example
     - POS_VALIDATOR_SEED=category ignore around vibrant delay cargo apart truly rabbit blue master cash
     # For devnet, we must use a different checkpoint provider
-    - CHECKPOINT_SYNCING_PROVIDERS=https://devnet-0.deso.run
+    - CHECKPOINT_SYNCING_PROVIDERS=https://test.deso.org
     - TESTNET=true
     - REGTEST=true
     - CONNECT_IPS=devnet-0-root.deso.run:18000
