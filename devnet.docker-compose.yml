@@ -9,19 +9,25 @@ services:
     - 18001:18001
     - 18000:18000
     - 2345:2345
+    env_file:
+    - base.env
     environment:
     # Values we set here OVERRIDE the base.env variables.
     # Set the seed to a known devnet validator as an example
     - POS_VALIDATOR_SEED=category ignore around vibrant delay cargo apart truly rabbit blue master cash
     # For devnet, we must use a different checkpoint provider
-    - CHECKPOINT_SYNCING_PROVIDERS=https://test.deso.org
+    #- CHECKPOINT_SYNCING_PROVIDERS=https://test.deso.org
+    - SYNC_TYPE=blocksync
+    - MINER_PUBLIC_KEYS=tBCKWZLt6BtJNRzs4qT8DWUY7BCoMUQVFp86HwQJ4RAqNxjwisrK74
+    - BLOCK_PRODUCER_SEED=category ignore around vibrant delay cargo apart truly rabbit blue master cash
+    - STARTER_DESO_SEED=category ignore around vibrant delay cargo apart truly rabbit blue master cash
+    - NUM_MINING_THREADS=1
     - TESTNET=true
     - REGTEST=true
-    - CONNECT_IPS=devnet-0-root.deso.run:18000
+    - TXINDEX=true
+    #- CONNECT_IPS=devnet-0-root.deso.run:18000
     - PROTOCOL_PORT=18000
     - API_PORT=18001
-    env_file:
-    - base.env
     expose:
     - "18001"
     - "18000"
