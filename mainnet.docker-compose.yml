@@ -19,7 +19,7 @@ services:
     #
     # For mainnet, we must use a different checkpoint provider
     - CHECKPOINT_SYNCING_PROVIDERS=https://node.deso.org
-    - SYNC_TYPE=hypersync-archival
+    - SYNC_TYPE=blocksync
     - FORCE_CHECKSUM=false
     - TESTNET=false
     - REGTEST=false

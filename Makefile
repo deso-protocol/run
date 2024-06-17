@@ -1,30 +1,70 @@
-devnet:
-	docker compose -p devnet -f devnet.docker-compose.yml build && docker compose -f devnet.docker-compose.yml up
+COMPOSE_FILES := devnet.docker-compose.yml testnet.docker-compose.yml mainnet.docker-compose.yml local.docker-compose.yml
 
-devnet-wipe:
-	docker compose -p devnet -f devnet.docker-compose.yml down --volumes
+define compose_up
+	docker compose -p $(1) -f $(1).docker-compose.yml build
+	docker compose -p $(1) -f $(1).docker-compose.yml up
+endef
 
-testnet:
-	docker compose -f testnet.docker-compose.yml build && docker compose -f testnet.docker-compose.yml up
+define compose_down
+	docker compose -p $(1) -f $(1).docker-compose.yml down --volumes
+endef
 
-testnet-wipe:
-	docker compose -f testnet.docker-compose.yml down --volumes
+define wipe_volumes
+	@volumes=$$(docker volume ls -qf "name=$(1)") && \
+	for volume in $$volumes; do \
+		containers=$$(docker ps -a -q --filter "volume=$$volume"); \
+		for container in $$containers; do \
+			docker stop $$container; \
+			docker rm $$container; \
+		done; \
+		docker volume rm $$volume; \
+	done
+endef
 
-mainnet:
-	docker compose -p mainnet -f mainnet.docker-compose.yml build && docker compose -f mainnet.docker-compose.yml up
+define clear_containers
+	@containers=$$(docker ps -a -q -f "name=$(1)") && \
+	for container in $$containers; do \
+		docker stop $$container; \
+		docker rm $$container; \
+	done
+endef
 
-mainnet-wipe:
-	docker compose -p mainnet -f mainnet.docker-compose.yml down --volumes
+define stop_backend
+	@if docker ps -a --format '{{.Names}}' | grep -q "backend"; then \
+		docker stop backend; \
+		docker rm backend; \
+	fi
+endef
+
+define stop_frontend
+	@if docker ps -a --format '{{.Names}}' | grep -q "frontend"; then \
+		docker stop frontend; \
+		docker rm frontend; \
+	fi
+endef
+
+define stop_nginx
+	@if docker ps -a --format '{{.Names}}' | grep -q "nginx"; then \
+		docker stop nginx; \
+		docker rm nginx; \
+	fi
+endef
+
+.PHONY: devnet testnet mainnet local wipe
+
+devnet testnet mainnet local:
+	$(call compose_up,$@)
+
+devnet-wipe testnet-wipe mainnet-wipe local-wipe:
+	$(call compose_down,$(subst -wipe,,$@))
+	$(call clear_containers,$(subst -wipe,,$@))
+	$(call wipe_volumes,$(subst -wipe,,$@))
+	$(call stop_backend)
+	$(call stop_frontend)
+	$(call stop_nginx)
 
 local:
-	(cd ../ && docker buildx build -f ./backend/Dockerfile -t local-backend:latest . )
-	docker compose -p local -f local.docker-compose.yml build && docker compose -f local.docker-compose.yml up
+	(cd ../ && docker buildx build -f ./backend/Dockerfile -t local-backend:latest .)
+	$(call compose_up,$@)
 
-local-wipe:
-	docker compose -p local -f local.docker-compose.yml down --volumes
-
-wipe:
-	make local-wipe
-	make devnet-wipe
-	make testnet-wipe
-	make mainnet-wipe
+wipe: local-wipe devnet-wipe testnet-wipe mainnet-wipe

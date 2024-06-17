@@ -1,6 +1,6 @@
 # Run your own DeSo node
 
-Running your own DeSo node is as easy as 1-2-3:
+Running your own DeSo node is easy:
 
 1. [Install Docker and Docker Compose](https://docs.docker.com/get-docker/) if you don't have it already
     * On Mac and Windows, Docker comes with Docker Compose
@@ -14,29 +14,50 @@ data that your node is syncing.
 
 ## Check sync progress
 
-You can check on the sync progress of your local node in the admin panel of the frontend.
+You can check on the sync progress of your local node either by looking at the output
+or by looking in the admin panel of the frontend. 
 
 1. Create a new user OR sign in with your existing seed phrase
 2. Head to the Admin panel to see your sync status. The tooltips should explain what
    most things mean.
 
+If you're looking at the output in the terminal, note
+that there is a header-download phase that is usually pretty quick (a few minutes)
+followed by a block syncing phase (if you're running iwith --sync-type=blocksync) or
+a hypersync phase (if you're running --sync-type=hypersync-archival). The sync type is
+specified in the base.env and overridden by the docker-compose.yml file for each
+environment.
+
 ## Reset your node
 
 If your node fails to sync or you want to try syncing from scratch you can run `make wipe`.
 
+## Learning More
+If you want to learn more about how the DeSo node works, you can start by reading each
+of the relevant docker-compose.yml files and the base.env file, which has a lot of
+comments describing each of the flags.
+
+If you want to know how the actual underlying node code works, check out
+[our docs page](https://docs.deso.org/). To learn more about building an app, see our
+[app tutorial](https://docs.deso.org/deso-tutorial-build-apps). To learn more about our architecture, including a code walkthrough,
+see our [architecture overview](https://docs.deso.org/deso-repos/architecture-overview).
+
+To run a validator, see our [validator instructions doc](https://docs.google.com/document/d/1WAy7ZaRPXeuuOdPdOhgqeWaDAdTUD_8UDOvj4jVxTlw/edit).
+
 ## What's next?
 Once your node is synced, you have access to the full firehose of DeSo
 data in real time! Below are some tips on how take full advantage of your node.
+
 * Go to your Admin tab and watch the unfiltered feed update as your node
   syncs. It's like a time machine!
   - Note: If your node is having trouble syncing for some reason, try updating
-    the CONNECT_IPS flag in dev.env to deso-seed-2.io or deso-seed-4.io and set
+    the CONNECT_IPS flag in base.env to deso-seed-2.io or deso-seed-4.io and set
     IGNORE\_INBOUND\_PEER\_INV\_MESSAGES to true while you sync. This will pick
     a fairly reliable node as a sync peer and disregard messages from other
     peers.
 * Try to whitelist some posts in the Admin tab and see that they've made their way
   onto your global feed.
-* Read through the flags available in the [dev.env](https://github.com/deso-protocol/run/blob/main/base.env)
+* Read through the flags available in the base.env
   file. You can adjust these flags however you want, but note that some flags may be
   overridden in the docker-compose.yml files so just make sure you edit them there if they're
   set.
@@ -58,5 +79,5 @@ data in real time! Below are some tips on how take full advantage of your node.
 * Play with the logging verbosity by increasing GLOG\_V.
 
 ## Need help?
-You can often find ansers in the [DeSo Discord](https://discord.com/channels/820740896181452841/821856541526589520)
+You can often find ansers in the [DeSo PoS Discussion Telegram Channel](https://t.me/deso_pos_discussion)
 The dev team is also active on all DeSo apps such as diamondapp.com and focus.xyz.
