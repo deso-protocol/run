@@ -1,58 +1,75 @@
 # Run your own DeSo node
 
-Running your own DeSo node is as easy as 1-2-3:
+Running your own DeSo node is easy:
 
 1. [Install Docker and Docker Compose](https://docs.docker.com/get-docker/) if you don't have it already
     * On Mac and Windows, Docker comes with Docker Compose
     * On Linux you need to install Docker Engine and Docker Compose separately
-2. Execute `./run.sh`
-    * Optionally, use `docker-compose up` arguments like `./run.sh -d` to run a daemon
-3. Visit http://deso.run. This domain is aliased to your local machine so it will
-   allow you to interact with your local node.
+2. Execute `make devnet`, `make testnet`, or `make mainnet` depending on which type of node you want to run
+    * This will automatically run the relevant docker-compose
+3. If you want to start from scratch, you can always do `make wipe` or `make {environment}-wipe`. This will
+delete all prior blocks/data for your node and allow it to start syncing from scratch again.
+4. Visit http://localhost:4200. This will load the frontend service you just ran and show you all the
+data that your node is syncing.
 
 ## Check sync progress
 
-You can check on the sync progress of your local node in the admin panel.
+You can check on the sync progress of your local node either by looking at the output
+or by looking in the admin panel of the frontend. 
 
 1. Create a new user OR sign in with your existing seed phrase
 2. Head to the Admin panel to see your sync status. The tooltips should explain what
    most things mean.
 
+If you're looking at the output in the terminal, note
+that there is a header-download phase that is usually pretty quick (a few minutes)
+followed by a block syncing phase (if you're running iwith --sync-type=blocksync) or
+a hypersync phase (if you're running --sync-type=hypersync-archival). The sync type is
+specified in the base.env and overridden by the docker-compose.yml file for each
+environment.
+
 ## Reset your node
 
-If your node fails to sync or you want to try syncing from scratch you can run:
+If your node fails to sync or you want to try syncing from scratch you can run `make wipe`.
 
-```bash
-docker-compose -f docker-compose.dev.yml down --volumes
-```
+## Learning More
+If you want to learn more about how the DeSo node works, you can start by reading each
+of the relevant docker-compose.yml files and the base.env file, which has a lot of
+comments describing each of the flags.
+
+If you want to know how the actual underlying node code works, check out
+[our docs page](https://docs.deso.org/). To learn more about building an app, see our
+[app tutorial](https://docs.deso.org/deso-tutorial-build-apps). To learn more about our architecture, including a code walkthrough,
+see our [architecture overview](https://docs.deso.org/deso-repos/architecture-overview).
+
+To run a validator, see our [validator instructions doc](https://docs.google.com/document/d/1WAy7ZaRPXeuuOdPdOhgqeWaDAdTUD_8UDOvj4jVxTlw/edit).
+
 ## What's next?
 Once your node is synced, you have access to the full firehose of DeSo
 data in real time! Below are some tips on how take full advantage of your node.
+
 * Go to your Admin tab and watch the unfiltered feed update as your node
   syncs. It's like a time machine!
   - Note: If your node is having trouble syncing for some reason, try updating
-    the CONNECT_IPS flag in dev.env to deso-seed-2.io or deso-seed-4.io and set
+    the CONNECT_IPS flag in base.env to deso-seed-2.io or deso-seed-4.io and set
     IGNORE\_INBOUND\_PEER\_INV\_MESSAGES to true while you sync. This will pick
     a fairly reliable node as a sync peer and disregard messages from other
     peers.
 * Try to whitelist some posts in the Admin tab and see that they've made their way
   onto your global feed.
-* Read through the flags available in the [dev.env](https://github.com/deso-protocol/run/blob/main/dev.env)
-  file. You can adjust these flags however you want, but note that we strongly
-  recommend keeping your node in read-only mode for now. Turning read-only mode
-  off could cause users who visit your node to make transactions that are not
-  ultimately confirmed.
+* Read through the flags available in the base.env
+  file. You can adjust these flags however you want, but note that some flags may be
+  overridden in the docker-compose.yml files so just make sure you edit them there if they're
+  set.
 * Set ADMIN\_PUBLIC\_KEYS to your public key so that the Admin tab is only
-  visible to your username.
+  visible to your account.
 * Set SUPER\_ADMIN\_PUBLIC\_KEYS to your public key so that the super admin tab is only
-  visible to your username.
+  visible to your account.
 * Whitelist some posts and verify that they show up on the global feed.
 * Deploy your node on any cloud provider with a static IP to make it accessible
   to anyone on the internet.
   - If you do this, you must point *two* domains at your node.
     domain.com *and* api.domain.com.
-  - If you do this, you must replace deso.run with your domain in nginx.dev so
-    that your traffic is routed to core and frontend properly.
   - If you do this, you *must* add your domain to the Caddyfile.dev's
     Content-Security-Policy or your site won't work. You will need to add two
     entries: One for domain.com:\* and one for api.domain.com:\*
@@ -62,6 +79,5 @@ data in real time! Below are some tips on how take full advantage of your node.
 * Play with the logging verbosity by increasing GLOG\_V.
 
 ## Need help?
-The dev community is active on Discord and generally available to answer any
-questions you might have, or any issues you run into. If you're having trouble, just
-message in `#nodes-discussion` on the [DeSo Community Discord](https://discord.com/invite/deso).
+You can often find ansers in the [DeSo PoS Discussion Telegram Channel](https://t.me/deso_pos_discussion)
+The dev team is also active on all DeSo apps such as diamondapp.com and focus.xyz.
