@@ -3,6 +3,7 @@ services:
     container_name: backend
     image: docker.io/desoprotocol/backend:latest
     command: run
+    entrypoint: /deso/bin/backend
     volumes:
     - testnet-db:/db
     ports:

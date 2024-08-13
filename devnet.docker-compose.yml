@@ -5,6 +5,7 @@ services:
     # For now, just grab the latest commit from feature/proof-of-stake
     image: docker.io/desoprotocol/backend:853e15481d6fe7a4bba97cbe79b43f9cde18b271
     command: run
+    entrypoint: /deso/bin/backend
     volumes:
     - devnet-db:/db
     ports:

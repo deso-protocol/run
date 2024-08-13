@@ -15,6 +15,7 @@ services:
     container_name: backend
     image: local-backend:latest
     command: run
+    entrypoint: /deso/bin/backend
     volumes:
     - local-db:/db
     ports:

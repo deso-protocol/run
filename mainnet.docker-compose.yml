@@ -5,6 +5,7 @@ services:
     # probably
     image: docker.io/desoprotocol/backend:latest
     command: run
+    entrypoint: /deso/bin/backend
     volumes:
     - mainnet-db:/db
     ports:
