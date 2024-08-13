@@ -3,6 +3,7 @@ services:
     container_name: backend
     image: docker.io/desoprotocol/backend:stable
     command: run
+    entrypoint: /deso/bin/backend
     volumes:
     - mainnet-db:/db
     ports:
